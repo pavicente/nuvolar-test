@@ -1,0 +1,45 @@
+<div class='top-container'>
+    <button (click)='goBack()'>Back</button>
+<br><br>
+    <div class='user-profile'>
+        <img src='{{activeUser?.avatar_url}}'>
+        <div class='user-info'>
+            <div>{{activeUser?.login}}</div>
+        </div>
+    </div>
+    <div class='user-detail'>
+        <ul *ngIf='activeUser'>
+            <li>Name: {{activeUser.name}}</li>
+            <li>Email: {{activeUser.email}}</li>
+            <li>Company: {{activeUser.company}}</li>
+            <li>Location: {{activeUser.location}}</li>
+            <li>Blog: <a href='{{activeUser.blog}}'>{{activeUser.blog}}</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class='title-separator'>{{followerList?.length}} Followers</div>
+
+
+<ul *ngIf='followerList' class='follower-container'>
+    <li
+        routerLink="/detail/{{follower.login}}"
+        *ngFor='let follower of followerList'>
+        <img src='{{follower.avatar_url}}'>
+        <div class='user-info'>
+            <div>{{follower.login}}</div>
+        </div>
+    </li>
+</ul>
+
+<div class='title-separator'>{{reposList?.length}} Repositories</div>
+<ul *ngIf='reposList' class='repos-container'>
+    <li
+        *ngFor='let repos of reposList'>
+        <a
+            href='{{repos.html_url}}'
+            target='_blank'>
+            {{repos.html_url}}
+        </a>
+    </li>
+</ul>

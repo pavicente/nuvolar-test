@@ -1,0 +1,46 @@
+@import '../../styles';
+button {
+    border: 1px solid $border-color-light;
+    border-radius: 5px;
+    width: 8em;
+    height: 3em;
+    cursor: pointer;
+    &:hover {
+        background-color: $hover-color-light;
+    }
+}
+
+div {
+    &.top-container {
+        div {
+            &.user-profile {
+                @extend %box;
+                max-width: 8em;
+                display: inline-block;
+                .user-info {
+                    text-align: center;
+                }
+            }
+            &.user-detail {
+                display: inline-block;
+                ul {
+                    list-style: none;
+                }
+            }
+        }
+    }
+}
+
+.repos-container {
+    li {
+        list-style: none;
+    }
+}
+
+.title-separator {
+    border-top: 1px solid #b7b7b7;
+    margin-top: 2em;
+    padding-top: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+}

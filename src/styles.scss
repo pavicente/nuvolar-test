@@ -1,0 +1,50 @@
+$border-color-light: rgb(50, 50, 50);
+$hover-color-light: rgb(225, 225, 225);
+%box {
+    padding: 0.5em;
+    margin: 0.75em;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    &:hover {
+        background-color: $hover-color-light;
+    }
+    div {
+        &.user-info {
+            & div:first-child {
+                font-weight: bold;
+            }
+        }
+    }
+    img {
+        width: 8em;
+        height: 8em;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+main {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1280px;
+    margin: 1em auto;
+    ul.follower-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: flex-start;
+        justify-content: center;
+        li {
+            @extend %box;
+            cursor: pointer;
+            list-style: none;
+            text-align: center;
+        }
+    }
+}

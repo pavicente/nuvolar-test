@@ -1,0 +1,12 @@
+.topnav {
+    background-color: #333;
+    display: flex;
+    height: 3em;
+    select {
+        margin: auto;
+        padding: 0.5em;
+        height: 2.75em;
+        width: 10em;
+        border-radius: 5px;
+    }
+}

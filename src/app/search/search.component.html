@@ -1,0 +1,18 @@
+<div class='top-container'>
+    <input
+        id='search'
+        type='text'
+        [(ngModel)]='searchValue'
+        (keydown)='triggerSearch(searchValue)'
+        placeholder='Search username...'>
+</div>
+<ul *ngIf='userList' class='follower-container'>
+    <li
+        routerLink="/detail/{{user.login}}"
+        *ngFor='let user of userList'>
+        <img src='{{user.avatar_url}}'>
+        <div class='user-info'>
+            <div>{{user.login}}</div>
+        </div>
+    </li>
+</ul>
