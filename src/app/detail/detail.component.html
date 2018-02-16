@@ -1,5 +1,5 @@
 <div class='top-container'>
-    <button (click)='goBack()'>Back</button>
+    <button (click)='goBack()'>&lt; Back to search</button>
 <br><br>
     <div class='user-profile'>
         <img src='{{activeUser?.avatar_url}}'>
@@ -20,7 +20,6 @@
 
 <div class='title-separator'>{{followerList?.length}} Followers</div>
 
-
 <ul *ngIf='followerList' class='follower-container'>
     <li
         routerLink="/detail/{{follower.login}}"
@@ -33,6 +32,7 @@
 </ul>
 
 <div class='title-separator'>{{reposList?.length}} Repositories</div>
+
 <ul *ngIf='reposList' class='repos-container'>
     <li
         *ngFor='let repos of reposList'>

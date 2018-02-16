@@ -34,16 +34,18 @@ export class SearchComponent implements OnInit {
 
         this.userList$.subscribe((userListRecieved: User[]) =>
             this.userList = userListRecieved.filter((user: User) => {
+                // Filter by name/login
                 const pattern: RegExp = new RegExp(this.searchValue);
                 return pattern.test(user.login);
             })
         );
 
-        // Initial search
+        // Initial (empty) search
         this.triggerSearch(this.searchValue);
     }
 
     public triggerSearch(searchValue: string): void {
+        // Trigger an update
         this.subjSearchValue.next(searchValue);
     }
 

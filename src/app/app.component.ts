@@ -9,7 +9,4 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    getState(outlet) {
-        return outlet.activatedRouteData.state;
-    }
 }

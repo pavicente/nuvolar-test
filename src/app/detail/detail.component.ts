@@ -28,12 +28,7 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() {
 
-        // const login$ = this.route.paramMap.switchMap((params: ParamMap) =>
-        //     this.userService.obtainSingleUser(params.get('login')));
-
-        // login$.subscribe((user: User) => this.activeUser = user);
-        // login$.
-
+        // Load users, followers and repos depending on the login parameter on the URL
         this.route.paramMap.switchMap((params: ParamMap) =>
                 this.userService.obtainSingleUser(params.get('login')))
             .subscribe((user: User) => this.activeUser = user);
