@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
-import { UserService } from '../shared/service/user.service';
 import { Subject } from 'rxjs/Subject';
 import { trigger, state, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { routerTransition } from '../_animations/animations';
+import { IUserService } from '../shared/service/i.user.service';
 
 @Component({
     selector: 'app-search',
@@ -22,22 +22,19 @@ export class SearchComponent implements OnInit {
     userList$: any;
 
     constructor(
-        private userService: UserService,
+        private userService: IUserService,
     ) { }
 
     ngOnInit() {
         // debounceTime to avoid spam
         // switchMap to ignore ongoing searches once a new one starts
         this.userList$ = this.subjSearchValue.asObservable().debounceTime(700).switchMap((val: string) =>
-            this.userService.obtainUsers()
+            this.userService.obtainUsers(this.searchValue)
         );
 
+        // Subscribe to the created observable in order to update the shown list whenever it changes
         this.userList$.subscribe((userListRecieved: User[]) =>
-            this.userList = userListRecieved.filter((user: User) => {
-                // Filter by name/login
-                const pattern: RegExp = new RegExp(this.searchValue);
-                return pattern.test(user.login);
-            })
+            this.userList = userListRecieved
         );
 
         // Initial (empty) search
@@ -45,7 +42,7 @@ export class SearchComponent implements OnInit {
     }
 
     public triggerSearch(searchValue: string): void {
-        // Trigger an update
+        // Trigger the subject update so we can get a new users list
         this.subjSearchValue.next(searchValue);
     }
 

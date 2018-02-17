@@ -1,6 +1,7 @@
-<div class='topnav'>
-    <select>
-        <option>Light theme</option>
-        <option>Dark theme</option>
+<div class='top-nav'>
+    <span>GitHub Users</span>
+    <select (change)='onThemeChange($event.target.value)'>
+        <option value='light-theme'>Light theme</option>
+        <option value='dark-theme'>Dark theme</option>
     </select>
 </div>

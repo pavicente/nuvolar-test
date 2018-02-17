@@ -1,12 +1,20 @@
-.topnav {
-    background-color: #333;
+.top-nav {
+    border-bottom: 1px solid;
     display: flex;
     height: 3em;
+    span {
+        font-size: 2em;
+        line-height: 1.5;
+        text-align: center;
+        width: 100%;
+    }
     select {
-        margin: auto;
-        padding: 0.5em;
-        height: 2.75em;
-        width: 10em;
         border-radius: 5px;
+        height: 2.75em;
+        padding: 0.5em;
+        position: absolute;
+        right: 0.4em;
+        top: 0.4em;
+        width: 10em;
     }
 }

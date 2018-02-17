@@ -9,29 +9,35 @@ import { Repos } from '../models/repos.model';
 export class UserService implements IUserService {
 
     private baseUrl = 'https://api.github.com';
-
     private usersUrl = '/users';
-
     private followersUrl = '/followers';
-
     private reposUrl = '/repos';
+    private searchUrl = '/search';
 
     constructor(
         private http: Http,
     ) { }
 
     /**
-     * @description Gets the list of all users from the server
+     * @description Gets the list of all users from the server. Matches username if provided
+     * @param {string} query
      * @returns {Observable<User[]>}
      * @memberof UserService
      */
-    public obtainUsers(): Observable<User[]> {
-        return this.http.get(this.baseUrl + this.usersUrl)
-        .map((res: Response) => <User[]>res.json());
+    public obtainUsers(query?: string): Observable<User[]> {
+        let url = '';
+        // If a query is provided, search for users containing that value -> /search/users?q=toto
+        if (query) {
+            url = this.baseUrl + this.searchUrl + this.usersUrl + '?q=' + query;
+            return this.http.get(url).map((res: Response) => <User[]>res.json().items);
+        }
+        // Basic search when no query is povided
+        url = this.baseUrl + this.usersUrl;
+        return this.http.get(url).map((res: Response) => <User[]>res.json());
     }
 
     /**
-     * @description Gets one user from the server
+     * @description Gets the user whose username is provided -> /user/toto
      * @param {string} login
      * @returns {Observable<User>}
      * @memberof UserService
@@ -52,6 +58,12 @@ export class UserService implements IUserService {
             .map((res: Response) => <User[]>res.json());
     }
 
+    /**
+     * @description Gets the list of repos from a particular user
+     * @param {string} login
+     * @returns {Observable<Repos[]>}
+     * @memberof UserService
+     */
     public obtainRepos(login: string): Observable<Repos[]> {
         return this.http.get(this.baseUrl + this.usersUrl + '/' + login + this.reposUrl)
             .map((res: Response) => res.json());

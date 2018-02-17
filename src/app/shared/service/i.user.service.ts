@@ -4,7 +4,7 @@ import { Repos } from '../models/repos.model';
 
 export abstract class IUserService {
 
-    public abstract obtainUsers(): Observable<User[]>;
+    public abstract obtainUsers(q?: string): Observable<User[]>;
 
     public abstract obtainSingleUser(login: string): Observable<User>;
 
