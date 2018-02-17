@@ -4,6 +4,7 @@ import { UserService } from '../shared/service/user.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Repos } from '../shared/models/repos.model';
 import { Observable } from 'rxjs/Observable';
+import { UserDetails } from '../shared/models/user-details.model';
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DetailComponent implements OnInit {
 
-    activeUser: User;
+    activeUser: UserDetails;
 
     followerList: User[];
 
@@ -31,7 +32,7 @@ export class DetailComponent implements OnInit {
         // Load users, followers and repos depending on the login parameter on the URL
         this.route.paramMap.switchMap((params: ParamMap) =>
                 this.userService.obtainSingleUser(params.get('login')))
-            .subscribe((user: User) => this.activeUser = user);
+            .subscribe((user: UserDetails) => this.activeUser = user);
 
         this.route.paramMap.switchMap((params: ParamMap) =>
                 this.userService.obtainFollowers(params.get('login')))

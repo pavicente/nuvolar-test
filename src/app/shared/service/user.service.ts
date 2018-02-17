@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { Response, Http } from '@angular/http';
 import { Repos } from '../models/repos.model';
+import { UserDetails } from '../models/user-details.model';
 
 @Injectable()
 export class UserService implements IUserService {
@@ -42,9 +43,9 @@ export class UserService implements IUserService {
      * @returns {Observable<User>}
      * @memberof UserService
      */
-    public obtainSingleUser(login: string): Observable<User> {
+    public obtainSingleUser(login: string): Observable<UserDetails> {
         return this.http.get(this.baseUrl + this.usersUrl + '/' + login)
-            .map((res: Response) => <User>res.json());
+            .map((res: Response) => <UserDetails>res.json());
     }
 
     /**

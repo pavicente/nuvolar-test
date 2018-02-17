@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
         // debounceTime to avoid spam
         // switchMap to ignore ongoing searches once a new one starts
-        this.userList$ = this.subjSearchValue.asObservable().debounceTime(700).switchMap((val: string) =>
+        this.userList$ = this.subjSearchValue.asObservable().debounceTime(500).switchMap((val: string) =>
             this.userService.obtainUsers(this.searchValue)
         );
 
