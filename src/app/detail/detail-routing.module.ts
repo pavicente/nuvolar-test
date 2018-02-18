@@ -7,6 +7,7 @@ const detailsRoutes: Routes = [
     {
         path: 'detail/:login',
         component: DetailComponent,
+        data: { page: 'detail' }
     }
 ];
 

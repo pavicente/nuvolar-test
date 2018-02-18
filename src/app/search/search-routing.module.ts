@@ -7,6 +7,7 @@ const searchRoutes: Routes = [
     {
         path: 'search',
         component: SearchComponent,
+        data: { page: 'search' }
     }
 ];
 

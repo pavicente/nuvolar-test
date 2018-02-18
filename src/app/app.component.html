@@ -1,7 +1,7 @@
 <main>
     <app-navbar (changeTheme)='onChangeTheme($event)'></app-navbar>
-    <div class='main-content'>
-        <router-outlet></router-outlet>
+    <div class='main-content' [@routerTransition]='getPage(appOutlet)'>
+        <router-outlet #appOutlet='outlet'></router-outlet>
     </div>
 </main>
     
